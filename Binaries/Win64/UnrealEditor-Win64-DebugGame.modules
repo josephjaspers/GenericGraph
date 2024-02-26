@@ -1,0 +1,8 @@
+{
+	"BuildId": "27405482",
+	"Modules": 
+	{
+		"GenericGraphEditor": "UnrealEditor-GenericGraphEditor-Win64-DebugGame.dll",
+		"GenericGraphRuntime": "UnrealEditor-GenericGraphRuntime-Win64-DebugGame.dll"
+	}
+}
