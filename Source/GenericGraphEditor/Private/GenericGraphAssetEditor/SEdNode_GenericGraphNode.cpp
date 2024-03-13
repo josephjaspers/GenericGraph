@@ -60,8 +60,8 @@ protected:
 	{
 		FGenericGraphDragConnection::FDraggedPinTable PinHandles;
 		PinHandles.Reserve(InStartingPins.Num());
-		// since the graph can be refreshed and pins can be reconstructed/replaced 
-		// behind the scenes, the DragDropOperation holds onto FGraphPinHandles 
+		// since the graph can be refreshed and pins can be reconstructed/replaced
+		// behind the scenes, the DragDropOperation holds onto FGraphPinHandles
 		// instead of direct widgets/graph-pins
 		for (const TSharedRef<SGraphPin>& PinWidget : InStartingPins)
 		{
@@ -109,94 +109,101 @@ void SEdNode_GenericGraphNode::UpdateGraphNode()
 		[
 			SNew(SBorder)
 			.BorderImage(FAppStyle::GetBrush("Graph.StateNode.Body"))
-			.Padding(0.0f)
-			.BorderBackgroundColor(this, &SEdNode_GenericGraphNode::GetBorderBackgroundColor)
+			.Padding(2.0f)
+			.BorderBackgroundColor(this, &SEdNode_GenericGraphNode::GetOuterBorderBackgroundColor)
 			[
-				SNew(SOverlay)
 
-				+ SOverlay::Slot()
-				.HAlign(HAlign_Fill)
-				.VAlign(VAlign_Fill)
+				SNew(SBorder)
+				.BorderImage(FAppStyle::GetBrush("Graph.StateNode.Body"))
+				.Padding(0.0f)
+				.BorderBackgroundColor(this, &SEdNode_GenericGraphNode::GetBorderBackgroundColor)
 				[
-					SNew(SVerticalBox)
+					SNew(SOverlay)
 
-					// Input Pin Area
-					+ SVerticalBox::Slot()
-					.FillHeight(1)
+					+ SOverlay::Slot()
+					.HAlign(HAlign_Fill)
+					.VAlign(VAlign_Fill)
 					[
-						SAssignNew(LeftNodeBox, SVerticalBox)
+						SNew(SVerticalBox)
+
+						// Input Pin Area
+						+ SVerticalBox::Slot()
+						.FillHeight(1)
+						[
+							SAssignNew(LeftNodeBox, SVerticalBox)
+						]
+
+						// Output Pin Area
+						+ SVerticalBox::Slot()
+						.FillHeight(1)
+						[
+							SAssignNew(RightNodeBox, SVerticalBox)
+						]
 					]
 
-					// Output Pin Area	
-					+ SVerticalBox::Slot()
-					.FillHeight(1)
-					[
-						SAssignNew(RightNodeBox, SVerticalBox)
-					]
-				]
-
-				+ SOverlay::Slot()
-				.HAlign(HAlign_Center)
-				.VAlign(VAlign_Center)
-				.Padding(8.0f)
-				[
-					SNew(SBorder)
-					.BorderImage(FAppStyle::GetBrush("Graph.StateNode.ColorSpill"))
-					.BorderBackgroundColor(TitleShadowColor)
+					+ SOverlay::Slot()
 					.HAlign(HAlign_Center)
 					.VAlign(VAlign_Center)
-					.Visibility(EVisibility::SelfHitTestInvisible)
-					.Padding(6.0f)
+					.Padding(8.0f)
 					[
-						SAssignNew(NodeBody, SVerticalBox)
-									
-						// Title
-						+ SVerticalBox::Slot()
-						.AutoHeight()
+						SNew(SBorder)
+						.BorderImage(FAppStyle::GetBrush("Graph.StateNode.ColorSpill"))
+						.BorderBackgroundColor(TitleShadowColor)
+						.HAlign(HAlign_Center)
+						.VAlign(VAlign_Center)
+						.Visibility(EVisibility::SelfHitTestInvisible)
+						.Padding(6.0f)
 						[
-							SNew(SHorizontalBox)
+							SAssignNew(NodeBody, SVerticalBox)
 
-							// Error message
-							+ SHorizontalBox::Slot()
-							.AutoWidth()
+							// Title
+							+ SVerticalBox::Slot()
+							.AutoHeight()
 							[
-								SAssignNew(ErrorText, SErrorText)
-								.BackgroundColor(this, &SEdNode_GenericGraphNode::GetErrorColor)
-								.ToolTipText(this, &SEdNode_GenericGraphNode::GetErrorMsgToolTip)
-							]
+								SNew(SHorizontalBox)
 
-							// Icon
-							+SHorizontalBox::Slot()
-							.AutoWidth()
-							.VAlign(VAlign_Center)
-							[
-								SNew(SImage)
-								.Image(NodeTypeIcon)
-							]
-										
-							// Node Title
-							+ SHorizontalBox::Slot()
-							.Padding(FMargin(4.0f, 0.0f, 4.0f, 0.0f))
-							[
-								SNew(SVerticalBox)
-								+ SVerticalBox::Slot()
-								.AutoHeight()
+								// Error message
+								+ SHorizontalBox::Slot()
+								.AutoWidth()
 								[
-									SAssignNew(InlineEditableText, SInlineEditableTextBlock)
-									.Style(FAppStyle::Get(), "Graph.StateNode.NodeTitleInlineEditableText")
-									.Text(NodeTitle.Get(), &SNodeTitle::GetHeadTitle)
-									.OnVerifyTextChanged(this, &SEdNode_GenericGraphNode::OnVerifyNameTextChanged)
-									.OnTextCommitted(this, &SEdNode_GenericGraphNode::OnNameTextCommited)
-									.IsReadOnly(this, &SEdNode_GenericGraphNode::IsNameReadOnly)
-									.IsSelected(this, &SEdNode_GenericGraphNode::IsSelectedExclusively)
+									SAssignNew(ErrorText, SErrorText)
+									.BackgroundColor(this, &SEdNode_GenericGraphNode::GetErrorColor)
+									.ToolTipText(this, &SEdNode_GenericGraphNode::GetErrorMsgToolTip)
 								]
-								+ SVerticalBox::Slot()
-								.AutoHeight()
+
+								// Icon
+								+SHorizontalBox::Slot()
+								.AutoWidth()
+								.VAlign(VAlign_Center)
 								[
-									NodeTitle.ToSharedRef()
+									SNew(SImage)
+									.Image(NodeTypeIcon)
+								]
+
+								// Node Title
+								+ SHorizontalBox::Slot()
+								.Padding(FMargin(4.0f, 0.0f, 4.0f, 0.0f))
+								[
+									SNew(SVerticalBox)
+									+ SVerticalBox::Slot()
+									.AutoHeight()
+									[
+										SAssignNew(InlineEditableText, SInlineEditableTextBlock)
+										.Style(FAppStyle::Get(), "Graph.StateNode.NodeTitleInlineEditableText")
+										.Text(NodeTitle.Get(), &SNodeTitle::GetHeadTitle)
+										.OnVerifyTextChanged(this, &SEdNode_GenericGraphNode::OnVerifyNameTextChanged)
+										.OnTextCommitted(this, &SEdNode_GenericGraphNode::OnNameTextCommited)
+										.IsReadOnly(this, &SEdNode_GenericGraphNode::IsNameReadOnly)
+										.IsSelected(this, &SEdNode_GenericGraphNode::IsSelectedExclusively)
+									]
+									+ SVerticalBox::Slot()
+									.AutoHeight()
+									[
+										NodeTitle.ToSharedRef()
+									]
 								]
 							]
-						]					
+						]
 					]
 				]
 			]
@@ -230,6 +237,16 @@ void SEdNode_GenericGraphNode::UpdateGraphNode()
 	ErrorReporting->SetError(ErrorMsg);
 	CreatePinWidgets();
 }
+
+// static FText SEdNode_GenericGraphNode::ParseTitle(FText title)
+// {
+// 	int index = INDEX_NONE;
+// 	if (title.FindChar('\n', index))
+// 	{
+// 		return tite.
+// 	}
+// 	return title;
+// }
 
 void SEdNode_GenericGraphNode::CreatePinWidgets()
 {
@@ -316,6 +333,12 @@ FSlateColor SEdNode_GenericGraphNode::GetBorderBackgroundColor() const
 {
 	UEdNode_GenericGraphNode* MyNode = CastChecked<UEdNode_GenericGraphNode>(GraphNode);
 	return MyNode ? MyNode->GetBackgroundColor() : GenericGraphColors::NodeBorder::HighlightAbortRange0;
+}
+
+FSlateColor SEdNode_GenericGraphNode::GetOuterBorderBackgroundColor() const
+{
+	UEdNode_GenericGraphNode* MyNode = CastChecked<UEdNode_GenericGraphNode>(GraphNode);
+	return MyNode ? MyNode->GetOuterBorderBackgroundColor() : GenericGraphColors::NodeBorder::HighlightAbortRange0;
 }
 
 FSlateColor SEdNode_GenericGraphNode::GetBackgroundColor() const

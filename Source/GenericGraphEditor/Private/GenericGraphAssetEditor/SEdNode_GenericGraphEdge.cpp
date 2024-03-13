@@ -101,7 +101,9 @@ void SEdNode_GenericGraphEdge::UpdateGraphNode()
 				.AutoHeight()
 				[
 					SAssignNew(InlineEditableText, SInlineEditableTextBlock)
-					.ColorAndOpacity(FLinearColor::Black)
+					.MultiLine(true)
+					.Style(FAppStyle::Get(), "Graph.StateNode.NodeTitleInlineEditableText")
+					// .ColorAndOpacity(FLinearColor::White)
 					.Visibility(this, &SEdNode_GenericGraphEdge::GetEdgeTitleVisbility)
 					.Font(FCoreStyle::GetDefaultFontStyle("Regular", 12))
 					.Text(NodeTitle.Get(), &SNodeTitle::GetHeadTitle)
@@ -112,7 +114,7 @@ void SEdNode_GenericGraphEdge::UpdateGraphNode()
 				[
 					NodeTitle.ToSharedRef()
 				]
-				
+
 			]
 		];
 }
@@ -145,7 +147,7 @@ void SEdNode_GenericGraphEdge::PositionBetweenTwoNodesWithOffset(const FGeometry
 	const FVector2D NewCenter = StartAnchorPoint + (0.5f * DeltaPos) + (Height * Normal);
 
 	FVector2D DeltaNormal = DeltaPos.GetSafeNormal();
-	
+
 	// Calculate node offset in the case of multiple transitions between the same two nodes
 	// MultiNodeOffset: the offset where 0 is the centre of the transition, -1 is 1 <size of node>
 	// towards the PrevStateNode and +1 is 1 <size of node> towards the NextStateNode.

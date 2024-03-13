@@ -6,7 +6,7 @@
 
 UEdNode_GenericGraphEdge::UEdNode_GenericGraphEdge()
 {
-	bCanRenameNode = true;
+	bCanRenameNode = false;
 }
 
 void UEdNode_GenericGraphEdge::SetEdge(UGenericGraphEdge* Edge)

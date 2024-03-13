@@ -21,12 +21,13 @@ public:
 	void OnNameTextCommited(const FText& InText, ETextCommit::Type CommitInfo);
 
 	virtual FSlateColor GetBorderBackgroundColor() const;
+	virtual FSlateColor GetOuterBorderBackgroundColor() const;
+
 	virtual FSlateColor GetBackgroundColor() const;
 
 	virtual EVisibility GetDragOverMarkerVisibility() const;
 
 	virtual const FSlateBrush* GetNameIcon() const;
-
 protected:
 };
 

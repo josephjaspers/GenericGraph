@@ -203,3 +203,9 @@ void UEdGraph_GenericGraph::PostEditUndo()
 	NotifyGraphChanged();
 }
 
+void UEdGraph_GenericGraph::NotifyGraphChanged()
+{
+	Super::NotifyGraphChanged();
+	if (auto* graph = GetGenericGraph())
+		graph->OnUIGraphChanged();
+}

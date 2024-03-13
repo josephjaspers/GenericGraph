@@ -32,6 +32,7 @@ public:
 	virtual void AutowireNewNode(UEdGraphPin* FromPin) override;
 
 	virtual FLinearColor GetBackgroundColor() const;
+	virtual FLinearColor GetOuterBorderBackgroundColor() const;
 	virtual UEdGraphPin* GetInputPin() const;
 	virtual UEdGraphPin* GetOutputPin() const;
 

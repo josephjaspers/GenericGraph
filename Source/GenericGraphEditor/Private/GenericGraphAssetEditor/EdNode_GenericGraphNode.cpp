@@ -7,7 +7,7 @@
 
 UEdNode_GenericGraphNode::UEdNode_GenericGraphNode()
 {
-	bCanRenameNode = true;
+	bCanRenameNode = false;
 }
 
 UEdNode_GenericGraphNode::~UEdNode_GenericGraphNode()
@@ -64,6 +64,11 @@ void UEdNode_GenericGraphNode::SetGenericGraphNode(UGenericGraphNode* InNode)
 FLinearColor UEdNode_GenericGraphNode::GetBackgroundColor() const
 {
 	return GenericGraphNode == nullptr ? FLinearColor::Black : GenericGraphNode->GetBackgroundColor();
+}
+
+FLinearColor UEdNode_GenericGraphNode::GetOuterBorderBackgroundColor() const
+{
+	return GenericGraphNode == nullptr ? FLinearColor::Black : GenericGraphNode->GetOuterBorderBackgroundColor();
 }
 
 UEdGraphPin* UEdNode_GenericGraphNode::GetInputPin() const

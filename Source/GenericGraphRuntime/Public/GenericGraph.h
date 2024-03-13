@@ -48,6 +48,8 @@ public:
 	void ClearGraph();
 
 #if WITH_EDITORONLY_DATA
+	virtual void OnUIGraphChanged() {}
+
 	UPROPERTY()
 	class UEdGraph* EdGraph;
 

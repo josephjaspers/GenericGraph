@@ -127,7 +127,7 @@ UEdGraphNode* FAssetSchemaAction_GenericGraph_NewEdge::PerformAction(class UEdGr
 
 		ResultNode = NodeTemplate;
 	}
-	
+
 	return ResultNode;
 }
 
@@ -316,7 +316,7 @@ const FPinConnectionResponse UAssetGraphSchema_GenericGraph::CanCreateConnection
 	{
 		return FPinConnectionResponse(CONNECT_RESPONSE_DISALLOW, LOCTEXT("PinError", "Not a valid UGenericGraphEdNode"));
 	}
-		
+
 	//Determine if we can have cycles or not
 	bool bAllowCycles = false;
 	auto EdGraph = Cast<UEdGraph_GenericGraph>(Out->GetOwningNode()->GetGraph());
@@ -392,7 +392,7 @@ bool UAssetGraphSchema_GenericGraph::CreateAutomaticConversionNodeAndConnections
 	// Are nodes and pins all valid?
 	if (!NodeA || !NodeA->GetOutputPin() || !NodeB || !NodeB->GetInputPin())
 		return false;
-	
+
 	UGenericGraph* Graph = NodeA->GenericGraphNode->GetGraph();
 
 	FVector2D InitPos((NodeA->NodePosX + NodeB->NodePosX) / 2, (NodeA->NodePosY + NodeB->NodePosY) / 2);

@@ -11,9 +11,8 @@ UENUM(BlueprintType)
 enum class ENodeLimit : uint8
 {
 	Unlimited,
-    Limited
+	Limited
 };
-
 
 UCLASS(Blueprintable)
 class GENERICGRAPHRUNTIME_API UGenericGraphNode : public UObject
@@ -74,13 +73,14 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "GenericGraphNode_Editor" ,meta = (ClampMin = "0",EditCondition = "ChildrenLimitType == ENodeLimit::Limited", EditConditionHides))
 	int32 ChildrenLimit;
-	
+
 #endif
 
 #if WITH_EDITOR
 	virtual bool IsNameEditable() const;
 
 	virtual FLinearColor GetBackgroundColor() const;
+	virtual FLinearColor GetOuterBorderBackgroundColor() const { return FLinearColor(0,0,0,0); }
 
 	virtual FText GetNodeTitle() const;
 

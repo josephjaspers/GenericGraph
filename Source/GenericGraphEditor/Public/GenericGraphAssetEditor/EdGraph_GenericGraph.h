@@ -32,7 +32,10 @@ public:
 	UPROPERTY(Transient)
 	TMap<UGenericGraphEdge*, UEdNode_GenericGraphEdge*> EdgeMap;
 
+
+	void NotifyGraphChanged() override;
 protected:
+
 	void Clear();
 
 	void SortNodes(UGenericGraphNode* RootNode);
