@@ -1,3 +1,18 @@
+JJaspers Fork - GenericGraphPlugin
+==================
+Changelist:
+ #. Refactored UedNode_GenericGraphNode 'bCanRenameNode' to false.
+ 	* Allows making title-texts multiple lines to allow for smaller formatted "subtext"
+ 	* Supported for both edges + nodes
+
+.. image:: docs/images/GenericNodeWithExtraText.png
+.. image:: docs/images/GenericEdgeWithExtraText.png
+
+ #. Added support for a secondary background color
+	* Useful for implementing debug support to showcase which node is active
+.. image:: docs/images/GenericNodeWithSecondaryBackgroundColor.png
+-----------------------------------------------
+
 GenericGraphPlugin
 ==================
 
