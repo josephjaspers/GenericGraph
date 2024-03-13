@@ -1,19 +1,23 @@
-JJaspers Fork - GenericGraphPlugin
+JJaspers Fork Changelist - GenericGraphPlugin
 ==================
-Changelist:
- #. Refactored UedNode_GenericGraphNode 'bCanRenameNode' to false.
- 	* Allows making title-texts multiple lines to allow for smaller formatted "subtext"
- 	* Supported for both edges + nodes
 
-.. image:: docs/images/GenericNodeWithExtraText.png
-.. image:: docs/images/GenericEdgeWithExtraText.png
+1. Refactored UEdNode_GenericGraphNode 'bCanRenameNode' to false.
+  * Allows making title-texts multiple lines to allow for smaller formatted "subtext"
+  * Supported for both edges + nodes
 
- #. Added support for a secondary background color
-	* Useful for implementing debug support to showcase which node is active
+  .. image:: docs/images/GenericNodeWithExtraText.png
+  .. image:: docs/images/GenericEdgeWithExtraText.png
+
+2. Added support for a secondary background color
+  * Useful for implementing debug support to showcase which node is active
 .. image:: docs/images/GenericNodeWithSecondaryBackgroundColor.png
+
+-----------------------------------------------
+-----------------------------------------------
 -----------------------------------------------
 
-GenericGraphPlugin
+
+GenericGraphPlugin (Original ReadMe)
 ==================
 
 Generic graph data structure plugin for ue4
