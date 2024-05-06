@@ -4,6 +4,7 @@
 #include "GenericGraph.h"
 #include "GenericGraphNode.h"
 #include "GenericGraphEdge.h"
+#include "ScopedTransaction.h"
 #include "AssetGraphSchema_GenericGraph.generated.h"
 
 class UEdNode_GenericGraphNode;

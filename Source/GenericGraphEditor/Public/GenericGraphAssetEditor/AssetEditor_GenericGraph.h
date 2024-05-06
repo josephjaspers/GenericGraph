@@ -3,6 +3,8 @@
 #include "CoreMinimal.h"
 #include "Settings_GenericGraphEditor.h"
 #include "GenericGraph.h"
+#include "GraphEditor.h"
+#include "UnrealEd.h"
 
 #if ENGINE_MAJOR_VERSION == 5
 #include "UObject/ObjectSaveContext.h"
